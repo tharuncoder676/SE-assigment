@@ -91,5 +91,16 @@ jobs:
     if: github.ref == 'refs/heads/main'
     environment: staging
     steps:
+      - uses: actions/checkout@v4
       - name: Roll out the new revision
-        run: echo "docker compose up -d --no-deps --build api  # executed on the staging host"
+        # On the real staging host this step runs over SSH. In this academic
+        # deployment the command is printed so that the pipeline stage, its
+        # gating on the previous jobs and its environment protection rule are
+        # all demonstrable without provisioning cloud infrastructure.
+        run: |
+          echo "Deploying ${IMAGE_NAME}:${GITHUB_SHA} to the staging environment"
+          echo "docker compose pull api"
+          echo "docker compose up -d --no-deps api"
+          echo "curl --fail --retry 10 --retry-delay 3 http://staging.smartcare.local/ready"
+      - name: Record the deployment
+        run: echo "Deployed revision ${GITHUB_SHA} at $(date -u +%Y-%m-%dT%H:%M:%SZ)" >> $GITHUB_STEP_SUMMARY
