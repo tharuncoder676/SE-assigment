@@ -1,12 +1,12 @@
 {
-  "total_words": 10889,
+  "total_words": 10890,
   "composition": {
     "prose": {
       "words": 4119,
       "percent": 37.8
     },
     "table": {
-      "words": 3736,
+      "words": 3737,
       "percent": 34.3
     },
     "code": {
