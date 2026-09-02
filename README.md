@@ -30,6 +30,10 @@ uvicorn app.main:app --reload --port 8000
 Open <http://localhost:8000> for the portal and <http://localhost:8000/docs>
 for the interactive OpenAPI documentation.
 
+VS Code users can press F5 instead: `.vscode/launch.json` defines run
+configurations for the API with reload, the test suite, a single test file and
+the load-test harness.
+
 ## Running the tests
 
 ```bash

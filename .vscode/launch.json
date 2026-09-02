@@ -1,0 +1,61 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "SmartCare API (uvicorn, reload)",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "uvicorn",
+      "args": [
+        "app.main:app",
+        "--host", "127.0.0.1",
+        "--port", "8000",
+        "--reload"
+      ],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "APP_ENV": "development",
+        "JWT_SECRET": "dev-only-insecure-secret-change-me"
+      }
+    },
+    {
+      "name": "Pytest — full suite",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-v"],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PBKDF2_ITERATIONS": "1000",
+        "JWT_SECRET": "test-secret"
+      }
+    },
+    {
+      "name": "Pytest — current file",
+      "type": "debugpy",
+      "request": "launch",
+      "module": "pytest",
+      "args": ["-v", "${file}"],
+      "cwd": "${workspaceFolder}/backend",
+      "console": "integratedTerminal",
+      "justMyCode": false,
+      "env": {
+        "PBKDF2_ITERATIONS": "1000",
+        "JWT_SECRET": "test-secret"
+      }
+    },
+    {
+      "name": "Load test (127.0.0.1:8000)",
+      "type": "debugpy",
+      "request": "launch",
+      "program": "${workspaceFolder}/docs/loadtest.py",
+      "args": ["http://127.0.0.1:8000"],
+      "cwd": "${workspaceFolder}",
+      "console": "integratedTerminal"
+    }
+  ]
+}
