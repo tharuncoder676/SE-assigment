@@ -1,0 +1,22 @@
+services:
+  api:
+    build: .
+    image: smartcare/api:1.0.0
+    container_name: smartcare-api
+    ports:
+      - "8000:8000"
+    environment:
+      APP_ENV: production
+      JWT_SECRET: ${JWT_SECRET:-compose-demo-secret-please-override}
+      DATABASE_URL: sqlite:////data/smartcare.db
+    volumes:
+      - smartcare-data:/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "python", "-c", "import urllib.request;urllib.request.urlopen('http://localhost:8000/health')"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+
+volumes:
+  smartcare-data:

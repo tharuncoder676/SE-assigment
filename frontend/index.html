@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>SmartCare &mdash; Healthcare Appointment Platform</title>
+<link rel="stylesheet" href="/static/styles.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="logo">&#9877;</span>
+    <div>
+      <h1>SmartCare</h1>
+      <p>Smart Healthcare Appointment &amp; Patient Service Platform</p>
+    </div>
+  </div>
+  <div class="session">
+    <span id="who" class="who hidden"></span>
+    <button id="logoutBtn" class="btn ghost hidden">Log out</button>
+  </div>
+</header>
+
+<main>
+
+  <!-- ------------------------------------------------ auth ------------- -->
+  <section id="authView" class="card auth">
+    <div class="tabs">
+      <button class="tab active" data-tab="login">Sign in</button>
+      <button class="tab" data-tab="register">Create account</button>
+    </div>
+
+    <form id="loginForm" class="form">
+      <label>E-mail<input type="email" name="email" value="priya.patient@smartcare.local" required /></label>
+      <label>Password<input type="password" name="password" value="Patient@12345" required /></label>
+      <button class="btn primary" type="submit">Sign in</button>
+    </form>
+
+    <form id="registerForm" class="form hidden">
+      <label>Full name<input name="full_name" required minlength="2" /></label>
+      <label>E-mail<input type="email" name="email" required /></label>
+      <label>Mobile<input name="phone" maxlength="20" /></label>
+      <label>Password (minimum 8 characters)<input type="password" name="password" required minlength="8" /></label>
+      <button class="btn primary" type="submit">Create account</button>
+    </form>
+  </section>
+
+  <!-- ------------------------------------------------ app -------------- -->
+  <section id="appView" class="hidden">
+
+    <nav class="navtabs">
+      <button class="navtab active" data-view="book">Book appointment</button>
+      <button class="navtab" data-view="mine">My appointments</button>
+      <button class="navtab" data-view="alerts">Notifications <span id="badge" class="badge hidden">0</span></button>
+    </nav>
+
+    <!-- booking -->
+    <div id="bookView" class="view">
+      <div class="card">
+        <h2>1 &nbsp;Choose a doctor</h2>
+        <div class="filters">
+          <select id="speciality"><option value="">All specialities</option></select>
+          <input id="search" placeholder="Search by doctor name" />
+        </div>
+        <div id="doctors" class="doctors"></div>
+      </div>
+
+      <div id="slotCard" class="card hidden">
+        <h2>2 &nbsp;Pick an available slot</h2>
+        <p id="slotFor" class="muted"></p>
+        <div id="slots" class="slots"></div>
+      </div>
+
+      <div id="confirmCard" class="card hidden">
+        <h2>3 &nbsp;Confirm</h2>
+        <p id="confirmText" class="muted"></p>
+        <label>Reason for visit<textarea id="reason" rows="2" maxlength="500"
+          placeholder="e.g. Follow-up consultation for blood pressure"></textarea></label>
+        <button id="confirmBtn" class="btn primary">Confirm appointment</button>
+      </div>
+    </div>
+
+    <!-- history -->
+    <div id="mineView" class="view hidden">
+      <div class="card">
+        <h2>My appointments</h2>
+        <table class="table">
+          <thead><tr><th>Reference</th><th>Doctor</th><th>Speciality</th>
+            <th>Date &amp; time</th><th>Status</th><th></th></tr></thead>
+          <tbody id="apptRows"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- notifications -->
+    <div id="alertsView" class="view hidden">
+      <div class="card">
+        <h2>Notifications</h2>
+        <div id="alerts" class="alerts"></div>
+      </div>
+    </div>
+
+  </section>
+</main>
+
+<div id="toast" class="toast hidden"></div>
+
+<footer>
+  SmartCare v1.0.0 &middot; FastAPI + SQLAlchemy + Docker &middot;
+  <a href="/docs" target="_blank">OpenAPI documentation</a> &middot;
+  <a href="/health" target="_blank">Health</a> &middot;
+  <a href="/metrics" target="_blank">Metrics</a>
+</footer>
+
+<script src="/static/app.js"></script>
+</body>
+</html>
