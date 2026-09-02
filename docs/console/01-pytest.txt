@@ -1,0 +1,39 @@
+============================= test session starts =============================
+platform win32 -- Python 3.12.10, pytest-8.4.1, pluggy-1.6.0 -- C:\Users\sthar\AppData\Local\Programs\Python\Python312\python.exe
+cachedir: .pytest_cache
+rootdir: C:\Users\sthar\OneDrive\Desktop\smartcare-platform\backend
+configfile: pytest.ini
+testpaths: tests
+plugins: anyio-4.14.2, xdist-3.8.0
+collecting ... collected 25 items
+tests/test_appointments.py::test_tc10_doctor_directory_and_filter PASSED [  4%]
+tests/test_appointments.py::test_tc11_slots_are_generated_and_free PASSED [  8%]
+tests/test_appointments.py::test_tc12_unknown_doctor_returns_404 PASSED  [ 12%]
+tests/test_appointments.py::test_tc13_booking_requires_authentication PASSED [ 16%]
+tests/test_appointments.py::test_tc14_successful_booking PASSED          [ 20%]
+tests/test_appointments.py::test_tc15_double_booking_is_rejected PASSED  [ 24%]
+tests/test_appointments.py::test_tc16_concurrent_booking_yields_exactly_one_winner PASSED [ 28%]
+tests/test_appointments.py::test_tc17_cancellation_releases_the_slot PASSED [ 32%]
+tests/test_appointments.py::test_tc18_cancelling_an_unknown_reference_returns_404 PASSED [ 36%]
+tests/test_appointments.py::test_tc19_booking_publishes_an_event_and_delivers_a_notification PASSED [ 40%]
+tests/test_auth.py::test_tc01_register_returns_token PASSED              [ 44%]
+tests/test_auth.py::test_tc02_duplicate_email_rejected PASSED            [ 48%]
+tests/test_auth.py::test_tc03_short_password_rejected PASSED             [ 52%]
+tests/test_auth.py::test_tc04_login_success_and_failure PASSED           [ 56%]
+tests/test_auth.py::test_tc05_password_is_never_stored_in_clear PASSED   [ 60%]
+tests/test_auth.py::test_tc06_salt_makes_identical_passwords_differ PASSED [ 64%]
+tests/test_auth.py::test_tc07_protected_route_requires_valid_token PASSED [ 68%]
+tests/test_auth.py::test_tc08_tampered_or_expired_token_is_rejected PASSED [ 72%]
+tests/test_auth.py::test_tc09_role_guard_blocks_patient_from_admin_endpoint PASSED [ 76%]
+tests/test_ops.py::test_tc20_health_probe PASSED                         [ 80%]
+tests/test_ops.py::test_tc21_readiness_probe_checks_the_database PASSED  [ 84%]
+tests/test_ops.py::test_tc22_metrics_are_exposed_in_prometheus_format PASSED [ 88%]
+tests/test_ops.py::test_tc23_security_headers_are_present PASSED         [ 92%]
+tests/test_ops.py::test_tc24_rate_limiter_blocks_beyond_the_threshold PASSED [ 96%]
+tests/test_ops.py::test_tc25_openapi_document_is_published PASSED        [100%]
+============================== warnings summary ===============================
+..\..\..\..\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\formparsers.py:12
+  C:\Users\sthar\AppData\Local\Programs\Python\Python312\Lib\site-packages\starlette\formparsers.py:12: PendingDeprecationWarning: Please use `import python_multipart` instead.
+    import multipart
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+======================== 25 passed, 1 warning in 2.01s ========================

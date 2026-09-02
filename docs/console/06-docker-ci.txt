@@ -1,0 +1,24 @@
+GitHub Actions - job "Build container image"  (runner: ubuntu-latest)
+
+#1 [internal] booting buildkit
+#1 [internal] load build definition from Dockerfile
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#2 [internal] load metadata for docker.io/library/python:3.12-slim
+#4 [internal] load .dockerignore
+#5 [internal] load build context
+#6 [builder 1/4] FROM docker.io/library/python:3.12-slim@sha256:78387bc3881b8273120a12ebe6c1ab22b018ccc2c9adf565ae1ac9b536e184ea
+#5 [internal] load build context
+#8 [stage-1 2/8] RUN useradd --create-home --uid 10001 smartcare
+#9 [stage-1 4/8] COPY --from=builder /install/deps /usr/local
+#10 [stage-1 6/8] COPY frontend/ /app/frontend/
+#11 [builder 2/4] WORKDIR /install
+#18 exporting to docker image format
+#18 exporting layers done
+#18 exporting manifest sha256:ad698f28ab5e71eecfb7bf52616bc34613c5897c668d8e2aae1cf13c3e13185b done
+#18 exporting config sha256:646b7f18f29d40568fdb91851c9292712736fe578a35c01baec5b3cec37529d4 done
+#18 exporting to docker image format
+
+-- smoke test of the freshly built image ----------------------------
+$ docker run -d --name smoke -p 8000:8000 smartcare/api:5adf168
+$ curl -fs http://localhost:8000/health
+{"status":"UP","service":"SmartCare Appointment Platform","version":"1.0.0","environment":"production","uptime_seconds":0.9} -> healthy

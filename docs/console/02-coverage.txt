@@ -1,0 +1,28 @@
+Name                           Stmts   Miss  Cover   Missing
+------------------------------------------------------------
+app\__init__.py                    1      0   100%
+app\config.py                     13      0   100%
+app\database.py                   15      5    67%   24-28, 39
+app\deps.py                       23      2    91%   30, 42
+app\events.py                     27      2    93%   33, 45
+app\logging_conf.py               20      1    95%   25
+app\main.py                       51      1    98%   113
+app\metrics.py                    40      1    98%   28
+app\models.py                     66      0   100%
+app\ratelimit.py                  24      1    96%   26
+app\routers\__init__.py            0      0   100%
+app\routers\appointments.py       54      2    96%   38, 107
+app\routers\auth.py               41      1    98%   51
+app\routers\doctors.py            27      2    93%   31-32
+app\routers\notifications.py      33      6    82%   72-77
+app\routers\ops.py                30      1    97%   54
+app\schemas.py                    58      0   100%
+app\security.py                   50      5    90%   39-40, 42, 71-72
+app\seed.py                       32      0   100%
+tests\__init__.py                  0      0   100%
+tests\conftest.py                 56      0   100%
+tests\test_appointments.py        74      1    99%   123
+tests\test_auth.py                52      0   100%
+tests\test_ops.py                 28      0   100%
+------------------------------------------------------------
+TOTAL                            815     31    96%

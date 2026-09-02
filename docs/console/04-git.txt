@@ -1,0 +1,11 @@
+$ git log --oneline --graph --decorate
+* 5adf168 (HEAD -> main, origin/main) ci: fix deploy stage quoting and report the deployed revision
+* 3e0e1a2 chore: add ruff/coverage configuration and clear all lint findings
+* 87ee3a9 feat: SmartCare appointment platform - API, event bus, tests, Docker, CI
+
+$ git remote -v
+origin	https://github.com/tharuncoder676/SE-assigment.git (fetch)
+origin	https://github.com/tharuncoder676/SE-assigment.git (push)
+
+$ git ls-files | wc -l
+58

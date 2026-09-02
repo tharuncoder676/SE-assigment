@@ -1,0 +1,15 @@
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.auth", "message": "user registered", "user": "demo.patient@smartcare.local"}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "fb073bbe126f", "method": "POST", "path": "/api/v1/auth/register", "status": 201, "duration_ms": 667.57}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "98894c7e9d17", "method": "GET", "path": "/api/v1/auth/me", "status": 200, "duration_ms": 4.17}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "01133f3dd732", "method": "GET", "path": "/api/v1/doctors", "status": 200, "duration_ms": 8.23}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "619927267631", "method": "GET", "path": "/api/v1/doctors/6/slots", "status": 200, "duration_ms": 11.61}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.appointments", "message": "appointment booked", "event": "appointment.booked", "user": "demo.patient@smartcare.local"}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.events", "message": "event published", "event": "appointment.booked"}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "c325c6f592d9", "method": "POST", "path": "/api/v1/appointments", "status": 201, "duration_ms": 34.95}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.notifications", "message": "confirmation queued", "event": "notification.sent"}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "2c9e2d724c1b", "method": "POST", "path": "/api/v1/appointments", "status": 409, "duration_ms": 16.17}
+{"ts": "2026-09-02T11:43:27", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "3cc72877a7e6", "method": "POST", "path": "/api/v1/appointments", "status": 401, "duration_ms": 4.17}
+{"ts": "2026-09-02T11:43:28", "level": "INFO", "logger": "smartcare.events", "message": "event published", "event": "appointment.cancelled"}
+{"ts": "2026-09-02T11:43:28", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "f43039f9dd8a", "method": "DELETE", "path": "/api/v1/appointments/SC-488A590B", "status": 200, "duration_ms": 27.56}
+{"ts": "2026-09-02T11:43:28", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "12e0e65deacf", "method": "GET", "path": "/api/v1/admin/stats", "status": 403, "duration_ms": 19.66}
+{"ts": "2026-09-02T11:43:30", "level": "INFO", "logger": "smartcare.http", "message": "request handled", "request_id": "f2da32a0aa1f", "method": "GET", "path": "/api/v1/admin/stats", "status": 200, "duration_ms": 49.67}

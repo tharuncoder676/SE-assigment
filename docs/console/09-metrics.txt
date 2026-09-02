@@ -1,0 +1,32 @@
+$ curl http://localhost:8000/metrics
+
+# HELP smartcare_http_requests_total Total HTTP requests.
+# TYPE smartcare_http_requests_total counter
+smartcare_http_requests_total{method="DELETE",path="/api/v1/appointments/{reference}",status="200"} 2
+smartcare_http_requests_total{method="GET",path="/api/v1/appointments",status="200"} 2825
+smartcare_http_requests_total{method="GET",path="/api/v1/auth/me",status="200"} 1
+smartcare_http_requests_total{method="GET",path="/api/v1/doctors",status="200"} 15222
+smartcare_http_requests_total{method="GET",path="/api/v1/doctors/specialities",status="200"} 2
+smartcare_http_requests_total{method="GET",path="/api/v1/doctors/{doctor_id}/slots",status="200"} 1328
+smartcare_http_requests_total{method="POST",path="/api/v1/appointments",status="201"} 3
+smartcare_http_requests_total{method="POST",path="/api/v1/appointments",status="401"} 1
+smartcare_http_requests_total{method="POST",path="/api/v1/appointments",status="409"} 2
+smartcare_http_requests_total{method="POST",path="/api/v1/auth/login",status="200"} 2
+smartcare_http_requests_total{method="POST",path="/api/v1/auth/login",status="401"} 20
+smartcare_http_requests_total{method="POST",path="/api/v1/auth/login",status="429"} 5
+smartcare_http_requests_total{method="POST",path="/api/v1/auth/register",status="201"} 4
+# HELP smartcare_http_request_duration_seconds Request latency.
+# TYPE smartcare_http_request_duration_seconds histogram
+smartcare_http_request_duration_seconds_bucket{le="0.005"} 10537
+smartcare_http_request_duration_seconds_bucket{le="0.01"} 16246
+smartcare_http_request_duration_seconds_bucket{le="0.025"} 26575
+smartcare_http_request_duration_seconds_bucket{le="0.05"} 32008
+smartcare_http_request_duration_seconds_bucket{le="0.1"} 34152
+smartcare_http_request_duration_seconds_bucket{le="0.25"} 36030
+smartcare_http_request_duration_seconds_bucket{le="0.5"} 36055
+smartcare_http_request_duration_seconds_bucket{le="1.0"} 36056
+smartcare_http_request_duration_seconds_bucket{le="2.5"} 36057
+smartcare_http_request_duration_seconds_bucket{le="5.0"} 36057
+smartcare_http_request_duration_seconds_bucket{le="+Inf"} 36057
+smartcare_http_request_duration_seconds_sum 836.984990
+smartcare_http_request_duration_seconds_count 36057

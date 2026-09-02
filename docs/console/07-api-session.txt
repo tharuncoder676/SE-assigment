@@ -1,0 +1,100 @@
+$ curl -X POST /api/v1/auth/register -d '{"full_name":"Ravi Menon", ...}'
+HTTP 201  (674.4 ms)
+{
+  "access_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE3ODgzNTMwMDcsImlhdCI6MTc4ODM0OTQwNywiaXNzIjoic21hcnRjYXJlIiwicm9sZSI6InBhdGllbnQiLCJzdWIiOiJkZW1vLnBhdGllbnQuMTc4ODM0OTQwNzA3NjA3NjMwMEBzbWFydGNhcmUubG9jYWwifQ.IunjaBVRmF8Msoa7LdFxb58CvBx4eAnsw70qrU7Th5Y",
+  "token_type": "bearer",
+  "expires_in": 3600,
+  "role": "patient",
+  "full_name": "Ravi Menon"
+}
+
+$ curl /api/v1/auth/me -H 'Authorization: Bearer <jwt>'
+HTTP 200  (5.9 ms)
+{
+  "id": 5,
+  "full_name": "Ravi Menon",
+  "email": "demo.patient.1788349407076076300@smartcare.local",
+  "phone": "9876500011",
+  "role": "patient"
+}
+
+$ curl '/api/v1/doctors?speciality=Neurology'
+HTTP 200  (7.5 ms)
+[
+  {
+    "id": 6,
+    "name": "Dr. Samuel George",
+    "speciality": "Neurology",
+    "department": "Neuro Sciences",
+    "qualification": "DM (Neurology)",
+    "consultation_fee": 950,
+    "is_available": true
+  }
+]
+
+$ curl -X POST /api/v1/appointments -d '{"slot_id":427}'
+HTTP 201  (37.1 ms)
+{
+  "detail": "Appointment confirmed",
+  "reference": "SC-488A590B"
+}
+
+$ curl -X POST /api/v1/appointments  (same slot again -> conflict)
+HTTP 409  (19.3 ms)
+{
+  "detail": "Slot has already been booked"
+}
+
+$ curl -X POST /api/v1/appointments  (no Authorization header)
+HTTP 401  (6.7 ms)
+{
+  "detail": "Invalid or expired credentials"
+}
+
+$ curl /api/v1/notifications -H 'Authorization: Bearer <jwt>'
+HTTP 200  (6.9 ms)
+[
+  {
+    "id": 4,
+    "subject": "Appointment SC-488A590B confirmed",
+    "body": "Dear Ravi Menon, your appointment with Dr. Samuel George on 02-09-2026 15:00 is confirmed. Reference: SC-488A590B. Please arrive 15 minutes early.",
+    "channel": "in-app",
+    "is_read": false,
+    "created_at": "2026-09-02T11:43:27.823645"
+  }
+]
+
+$ curl -X DELETE /api/v1/appointments/SC-488A590B
+HTTP 200  (29.3 ms)
+{
+  "detail": "Appointment cancelled",
+  "reference": "SC-488A590B"
+}
+
+$ curl /api/v1/admin/stats  (patient role -> forbidden)
+HTTP 403  (21.5 ms)
+{
+  "detail": "Operation not permitted for role 'patient'"
+}
+
+$ curl /api/v1/admin/stats -H 'Authorization: Bearer <admin jwt>'
+HTTP 200  (55.0 ms)
+{
+  "patients": 4,
+  "doctors": 8,
+  "appointments_confirmed": 1,
+  "appointments_cancelled": 2,
+  "audit_entries": 31,
+  "events_published": 5
+}
+
+$ curl /ready
+HTTP 200  (20.3 ms)
+{
+  "status": "READY",
+  "checks": {
+    "database": "UP",
+    "event_bus": "UP"
+  }
+}
+
