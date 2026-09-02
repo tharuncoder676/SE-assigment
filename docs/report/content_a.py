@@ -1,6 +1,7 @@
 """Title page, table of contents and sections 1-4."""
 from docbuild import (bullets, cap, code, figure, h1, h2, link_para, note, para,
                       table, FIG, SHOT)
+from team import MEMBERS
 from docx.enum.text import WD_ALIGN_PARAGRAPH
 from docx.shared import Cm, Pt, RGBColor
 
@@ -38,14 +39,14 @@ def title_page(doc):
 
     p = doc.add_paragraph()
     p.alignment = WD_ALIGN_PARAGRAPH.CENTER
-    p.paragraph_format.space_after = Pt(10)
+    p.paragraph_format.space_after = Pt(6)
     run = p.add_run("Designed, built, containerised, tested and deployed through a "
                     "complete software engineering life cycle")
     run.italic = True
     run.font.size = Pt(10)
     run.font.color.rgb = RGBColor(0x5F, 0x71, 0x86)
 
-    figure(doc, FIG / "fig1.png", 15.2,
+    figure(doc, FIG / "fig1.png", 11.8,
            "Figure 1 — Layered architecture of the delivered system. Solid arrows are synchronous "
            "request paths; green arrows are asynchronous event delivery.")
 
@@ -58,14 +59,21 @@ def title_page(doc):
            ["Academic Year / Batch", "2023–2027"],
            ["Faculty Name", "[Faculty Name]"],
            ["Assignment Title", "Smart Healthcare Appointment and Patient Service Platform"],
-           ["Team Members", "[Student Name 1] — [Register No.]    |    [Student Name 2] — [Register No.]    |    "
-                            "[Student Name 3] — [Register No.]    |    [Student Name 4] — [Register No.]"],
            ["Date of Issue", "[DD-MM-YYYY]"],
            ["Date of Submission", "02-09-2026"],
            ["Maximum Marks", "100"],
            ["Course Outcome(s)", "CO1, CO2, CO3, CO4, CO5"],
            ["Bloom's Taxonomy Level", "L3 — Apply, L4 — Analyse, L5 — Evaluate, L6 — Create"]],
           widths=[26, 74], size=8.8)
+
+    h2(doc, "Team Members")
+    pairs = [MEMBERS[i:i + 2] for i in range(0, len(MEMBERS), 2)]
+    table(doc,
+          ["Name", "Register No.", "Name", "Register No."],
+          [[row[0][0], row[0][1],
+            row[1][0] if len(row) > 1 else "", row[1][1] if len(row) > 1 else ""]
+           for row in pairs],
+          widths=[30, 20, 30, 20], size=8.6, align_center=(1, 3))
 
 
 def evidence_block(doc):
@@ -112,7 +120,7 @@ TOC_ENTRIES = [
     ("s13", "13.  Conclusion, Limitations and Possible Improvements"),
     ("s14", "14.  Individual Contribution of Group Members"),
     ("s15", "15.  References"),
-    ("s16", "16.  One-Page Individual Reflection"),
+    ("s16", "16.  Individual Reflections (one page per member)"),
     ("s17", "17.  Originality and Similarity Statement"),
 ]
 

@@ -235,6 +235,22 @@ def table(doc, headers, rows, widths, size=8.6, header_size=8.4, align_center=()
     t.alignment = WD_TABLE_ALIGNMENT.CENTER
     t.autofit = False
 
+    # Cell widths alone are advisory: Word and LibreOffice both re-flow the
+    # columns unless the table declares a fixed layout and a matching grid.
+    tblPr = t._tbl.tblPr
+    layout = OxmlElement("w:tblLayout")
+    layout.set(qn("w:type"), "fixed")
+    tblPr.append(layout)
+    grid = t._tbl.find(qn("w:tblGrid"))
+    if grid is not None:
+        t._tbl.remove(grid)
+    grid = OxmlElement("w:tblGrid")
+    for width_cm in cm:
+        col = OxmlElement("w:gridCol")
+        col.set(qn("w:w"), str(int(Cm(width_cm).twips)))
+        grid.append(col)
+    t._tbl.insert(list(t._tbl).index(tblPr) + 1, grid)
+
     for idx, head in enumerate(headers):
         cell = t.rows[0].cells[idx]
         cell.width = Cm(cm[idx])

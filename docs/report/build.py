@@ -18,6 +18,7 @@ import content_a
 import content_b
 import content_c
 import content_d
+import reflections
 from docbuild import add_header_footer, add_page_border, new_document
 
 OUT = pathlib.Path(__file__).resolve().parents[2] / "SmartCare_Software_Engineering_Report.docx"
@@ -38,7 +39,7 @@ SECTIONS = [
     ("s13", content_c.section13),
     ("s14", content_c.section14),
     ("s15", content_c.section15),
-    ("s16", content_c.section16),
+    ("s16", reflections.section16),
     ("s17", content_d.section17),
 ]
 

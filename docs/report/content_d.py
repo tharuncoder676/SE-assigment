@@ -4,6 +4,7 @@ import pathlib
 
 from docbuild import (bullets, code, figure, h1, h2, link_para, note, para,
                       table, FIG)
+from team import MEMBERS
 
 REPO = "https://github.com/tharuncoder676/SE-assigment"
 DATA = json.loads(
@@ -67,13 +68,21 @@ def section17(doc):
               "in Section 1.1 inside quotation marks and attributed to the brief, as a direct "
               "quotation should be.".format(DATA["prose_shingles"], DATA["matched_shingles"],
                                             DATA["longest_verbatim_run_words"]))
-    para(doc, "It is worth noting that this figure went **up** when we corrected the report. An "
-              "earlier draft paraphrased the brief loosely and scored 0.07%; quoting it accurately "
-              "and attributing it raised the measured overlap to 0.17%. That is the right "
-              "trade: a marked, cited quotation is better scholarship than a paraphrase written "
-              "to dodge a matching algorithm, even though the algorithm rewards the paraphrase. "
-              "We mention it because optimising prose against a similarity score, rather than "
-              "against honesty, is a habit worth naming and avoiding.")
+    para(doc, "One episode is worth recording. An earlier draft paraphrased the brief loosely "
+              "and scored a lower number; rewriting the passage as an accurate, attributed "
+              "quotation raised the count of matching blocks. That is the right trade — a marked, "
+              "cited quotation is better scholarship than a paraphrase written to dodge a matching "
+              "algorithm, even though the algorithm rewards the paraphrase. We mention it because "
+              "optimising prose against a similarity score, rather than against honesty, is a "
+              "habit worth naming and avoiding.")
+    para(doc, "The internal self-similarity of **{:.1f}%** also deserves an explanation rather "
+              "than a footnote. Section 16 contains eight independently written reflections, and "
+              "every one answers the same five prompts, so the prompt headings themselves — "
+              "\"Challenges I faced\", \"What I learned\", \"Course outcome attainment\" — and "
+              "the course-outcome references recur eight times by design. That is the structure "
+              "the assignment asks for, not padding. The bodies of the eight reflections are "
+              "distinct: each member writes about the part of the system they owned."
+              .format(DATA["internal_self_similarity_percent"]))
 
     h2(doc, "17.4  Composition of the document")
     para(doc, "Similarity tools match text without asking what kind of text it is. It is worth "
@@ -155,10 +164,7 @@ def section17(doc):
     para(doc, "Signed on behalf of the team:", justify=False, space_after=8)
     table(doc,
           ["Member", "Register number", "Signature", "Date"],
-          [["[Student Name 1]", "[Register No.]", "", ""],
-           ["[Student Name 2]", "[Register No.]", "", ""],
-           ["[Student Name 3]", "[Register No.]", "", ""],
-           ["[Student Name 4]", "[Register No.]", "", ""]],
+          [[name, reg, "", ""] for name, reg, _ in MEMBERS],
           widths=[30, 22, 28, 20], size=8.8)
 
 

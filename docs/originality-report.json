@@ -1,31 +1,31 @@
 {
-  "total_words": 10890,
+  "total_words": 14444,
   "composition": {
     "prose": {
-      "words": 4119,
-      "percent": 37.8
+      "words": 6337,
+      "percent": 43.9
     },
     "table": {
-      "words": 3737,
-      "percent": 34.3
+      "words": 3994,
+      "percent": 27.7
     },
     "code": {
-      "words": 2630,
-      "percent": 24.2
+      "words": 3709,
+      "percent": 25.7
     },
     "reference": {
       "words": 404,
-      "percent": 3.7
+      "percent": 2.8
     }
   },
-  "prose_words": 4119,
+  "prose_words": 6337,
   "shingle_size": 8,
-  "prose_shingles": 4112,
+  "prose_shingles": 6330,
   "per_source": {
     "assignment-brief": {
       "source_words": 706,
       "matched_shingles": 7,
-      "overlap_percent": 0.17
+      "overlap_percent": 0.111
     },
     "reference-format-sample": {
       "source_words": 3394,
@@ -33,10 +33,10 @@
       "overlap_percent": 0.0
     }
   },
-  "combined_source_overlap_percent": 0.17,
+  "combined_source_overlap_percent": 0.111,
   "matched_shingles": 7,
   "longest_verbatim_run_words": 14,
-  "internal_self_similarity_percent": 0.22,
+  "internal_self_similarity_percent": 1.5,
   "sample_matches": [
     "appointments doctor availability notifications service requests and healthcare",
     "availability notifications service requests and healthcare related information",
