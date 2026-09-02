@@ -113,6 +113,7 @@ TOC_ENTRIES = [
     ("s14", "14.  Individual Contribution of Group Members"),
     ("s15", "15.  References"),
     ("s16", "16.  One-Page Individual Reflection"),
+    ("s17", "17.  Originality and Similarity Statement"),
 ]
 
 
@@ -124,10 +125,11 @@ def section1(doc):
     para(doc, "A multi-specialty healthcare organisation is struggling on several fronts at once. "
               "Appointments are delayed, the volume of user requests keeps climbing, the service "
               "is not reliably available, the system goes down, and the applications the "
-              "organisation already owns are difficult to integrate with anything new. What they "
-              "want is a platform that can manage patient appointments, doctor availability, "
-              "notifications, service requests and healthcare information, and that will still "
-              "work when the load doubles.")
+              "organisation already owns are difficult to integrate with anything new. In the "
+              "words of the brief, what is required is a platform to \"manage patient "
+              "appointments, doctor availability, notifications, service requests, and "
+              "healthcare-related information\" — and one that will still work when the load "
+              "doubles.")
     para(doc, "When we broke this down, we found that the visible complaint (appointments are "
               "slow) is not really one problem. It is at least four, and they have different "
               "causes and different fixes.")

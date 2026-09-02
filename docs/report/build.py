@@ -17,6 +17,7 @@ sys.path.insert(0, str(pathlib.Path(__file__).parent))
 import content_a
 import content_b
 import content_c
+import content_d
 from docbuild import add_header_footer, add_page_border, new_document
 
 OUT = pathlib.Path(__file__).resolve().parents[2] / "SmartCare_Software_Engineering_Report.docx"
@@ -38,6 +39,7 @@ SECTIONS = [
     ("s14", content_c.section14),
     ("s15", content_c.section15),
     ("s16", content_c.section16),
+    ("s17", content_d.section17),
 ]
 
 

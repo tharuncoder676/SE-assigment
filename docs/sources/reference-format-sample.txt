@@ -1,0 +1,318 @@
+[Heading 1] A. Assignment Information
+--- TABLE ---
+Department | Computer Science and Engineering
+Programme | B.Tech – Computer Science and Engineering
+Course Code & Course Name | CSA51- Cryptography and Network Security
+Academic Year / Batch | 2023–2027
+Faculty Name | Dr. T. Sangeetha
+Assignment Title | Design and Analysis of a Secure Communication and Network Defense System
+Date of Issue | 31-08-2026
+Date of Submission | 02-09-2026
+Maximum Marks | 100
+Course Outcome(s) | CO3, CO4, CO5
+Bloom's Taxonomy Level | L3 – Apply, L4 – Analyze, L5 – Evaluate, L6 – Create
+--- END TABLE ---
+[Heading 1] B. Assignment Problem / Challenge
+[Normal] Real-World Challenge
+[Normal] A financial services organization wants to develop a secure communication and network protection system for its employees and customers. The organization exchanges confidential information such as customer details, financial transactions, authentication credentials and business documents through its internal network, email systems and web applications.
+[Normal] The organization has identified several security risks:
+[List Paragraph] Unauthorized access to confidential information
+[List Paragraph] Interception of sensitive communications
+[List Paragraph] Weak encryption methods
+[List Paragraph] Password and authentication attacks
+[List Paragraph] Email spoofing and tampering
+[List Paragraph] Malware such as viruses and worms
+[List Paragraph] Unauthorized network access
+[List Paragraph] Intrusion attempts against servers
+[Normal] Assignment Challenge
+[Normal] Design a multi-layer network security strategy for the organization by applying classical encryption, public-key cryptography, authentication, email security, firewall technologies and IDS/IPS.
+[Normal] Students must:
+[List Paragraph] Design secure email communication using PGP and S/MIME.
+[List Paragraph] Design a firewall architecture with IDS/IPS.
+[List Paragraph] Compare alternative security solutions.
+[List Paragraph] Validate the proposed solution using suitable tools or examples.
+[List Paragraph] Discuss security, ethical, societal and practical considerations.
+[Heading 1] C. Problem Statement
+[Normal] CO3: Examine cryptographic hash algorithms, digital signature schemes, and assess Kerberos and X.509 authentication frameworks for ensuring integrity, authentication, and non-repudiation.
+[Normal] CO4: Implement best security practices for IP, email, and web service using PGP, S/MIME for enhancing email Security.
+[Normal] CO5: Develop the network security strategies based on the study of viruses, worms, firewall architectures, and IDS/IPS functionalities.
+[Normal] A company has approximately 500 employees, multiple departments, an internal database, a public web server, an email server and remote employees.
+[Normal] The company wants to protect:
+[List Paragraph] Customer information
+[List Paragraph] Employee credentials
+[List Paragraph] Financial records
+[List Paragraph] Email communication
+[List Paragraph] Web applications
+[List Paragraph] Internal network resources
+[Normal] Design a suitable end-to-end network security architecture.
+[Normal] The solution must demonstrate how cryptographic algorithms, authentication mechanisms, secure email protocols, firewalls and intrusion detection/prevention systems can work together to provide:
+[Normal] Confidentiality + Integrity + Authentication + Non-repudiation + Availability
+[Heading 1] D. Requirements and Constraints
+[Normal] Functional Requirements
+[Normal] The proposed system should:
+[List Paragraph] Encrypt confidential information.
+[List Paragraph] Provide secure key exchange.
+[List Paragraph] Authenticate users.
+[List Paragraph] Verify message integrity.
+[List Paragraph] Support digital signatures.
+[List Paragraph] Secure email communication.
+[List Paragraph] Protect public-facing servers.
+[List Paragraph] Detect suspicious network activity.
+[List Paragraph] Prevent unauthorized network access.
+[Normal] Technical Requirements
+[Normal] Students should consider: Kerberos, X.509, PGP, S/MIME, IPSec, Firewalls, IDS/IPS.
+[Normal] Constraints
+[List Paragraph] Security should not significantly reduce system performance.
+[List Paragraph] Secret keys must be protected.
+[List Paragraph] Public-facing services must be isolated from the internal network.
+[List Paragraph] Authentication must be reliable.
+[List Paragraph] The system should be scalable for additional users.
+[List Paragraph] User privacy must be maintained.
+[List Paragraph] The proposed solution should be economically practical.
+[Heading 1] E. Student Work – Answers
+[Heading 2] 1. Problem Understanding and Formulation (10 Marks)
+[Normal] a) What is the problem?
+[Normal] The organization needs to protect sensitive data and communication from unauthorized access, modification, impersonation and network attacks. Confidential customer and financial information travels across an internal network, a public web server, an email system and remote-employee connections, all of which are exposed to interception, tampering, credential theft and malware.
+[Normal] b) Expected Outcomes
+[List Paragraph] Confidentiality – only authorized parties can read the data.
+[List Paragraph] Integrity – data is not altered in transit without detection.
+[List Paragraph] Authentication – the identity of users, servers and email senders is verified.
+[List Paragraph] Non-repudiation – a sender cannot deny having sent a transaction or message.
+[List Paragraph] Secure communication – confidential channels for internal, web and email traffic.
+[List Paragraph] Intrusion detection and prevention – suspicious and malicious traffic is identified and blocked.
+[Normal] c) Available Information
+[List Paragraph] Organization size: ~500 employees across multiple departments.
+[List Paragraph] Network assets: internal database, public web server, email server, remote employees.
+[List Paragraph] Security threats: interception, weak encryption, credential attacks, email spoofing, malware, unauthorized access, intrusion attempts.
+[Normal] d) Assumptions
+[List Paragraph] Employees have authenticated accounts issued by the organization.
+[List Paragraph] Servers are connected through a protected, segmented network (DMZ for public-facing services).
+[List Paragraph] Security policies are enforced by administrators and reviewed periodically.
+[List Paragraph] Cryptographic keys are generated, stored and rotated securely (e.g., using a key-management system or HSM).
+[Heading 2] 2. Application of Course Knowledge (20 Marks)
+[Normal] Hash Functions, Digital Signatures, Kerberos & X.509
+[Normal] Hash Function (SHA-256) – computed on the same plaintext “HELLO” to demonstrate the avalanche effect:
+--- TABLE ---
+SHA-256("HELLO")  = 3733cd977ff8eb18b987357e22ced99f46097f31ecb239e878ae63760e83e4d5 SHA-256("HELLP")  = d37f1f826f924dcd23aacbdc875edd4808b9e118d35adb9dce1c80cb23c4a9c1   Changing a single character (O -> P) completely changes the digest, confirming the hash reliably detects even minor tampering with the message.
+--- END TABLE ---
+--- TABLE ---
+Sign:   S = h^d mod n = 5^7 mod 33  = 14   (sender signs digest with private key d) Verify: h' = S^e mod n = 14^3 mod 33 = 5   (receiver verifies with public key e)   Since h' = h, the signature is valid: the message came from the holder of the private key and was not altered (integrity + authentication + non-repudiation).
+--- END TABLE ---
+[Normal] Kerberos – provides ticket-based authentication using a trusted Key Distribution Center (KDC), split into an Authentication Server (AS) and Ticket-Granting Server (TGS):
+[List Paragraph] Client sends a request to the AS for a Ticket-Granting Ticket (TGT), authenticating with a password-derived key.
+[List Paragraph] AS returns a TGT (encrypted with the TGS's secret key) and a session key (encrypted with the client's key).
+[List Paragraph] Client presents the TGT and an authenticator to the TGS to request a service ticket for a specific server (e.g., the internal database).
+[List Paragraph] TGS issues a service ticket (encrypted with the target server's key) plus a new session key.
+[List Paragraph] Client presents the service ticket and authenticator directly to the target server.
+[List Paragraph] Server decrypts the ticket, verifies the authenticator, and both sides now share a session key — mutual authentication achieved without sending passwords over the network.
+[Normal] X.509 – defines the standard format for public-key certificates used to bind a public key to an identity (e.g., the company's web/mail server). Key fields include:
+[List Paragraph] Version and Serial Number – certificate format version and a unique identifier.
+[List Paragraph] Issuer – the Certificate Authority (CA) that signed the certificate.
+[List Paragraph] Validity Period – “not before” / “not after” dates.
+[List Paragraph] Subject – the entity the certificate identifies (e.g., mail.company.com).
+[List Paragraph] Subject Public Key Info – the public key and algorithm (e.g., RSA-2048).
+[List Paragraph] Signature Algorithm & CA Signature – proves the certificate itself has not been tampered with.
+[Normal] In this design, X.509 certificates issued by an internal or trusted CA let employees' browsers and mail clients verify that they are really talking to the organization's web and mail servers, preventing impersonation.
+[Normal] Secure Email (PGP / S/MIME)
+[Normal] PGP (Pretty Good Privacy) message flow for an outgoing employee email:
+[List Paragraph] Hash the message (SHA-256) and sign the digest with the sender's private key (authentication + non-repudiation).
+[List Paragraph] Compress the message + signature (saves bandwidth, adds minor cryptanalytic resistance).
+[List Paragraph] Generate a random one-time session key and encrypt the compressed data with a symmetric cipher (e.g., AES) using that key (confidentiality).
+[List Paragraph] Radix-64 (Base64) encode the result so it can travel safely through email systems, then send.
+[Normal] S/MIME follows the same cryptographic idea (hash + sign, then symmetric-encrypt the body and RSA-encrypt the session key) but differs from PGP mainly in trust model and packaging: S/MIME relies on a hierarchical X.509 CA structure (matching the certificates described under CO3) and uses standard CMS/MIME encoding, whereas PGP uses a decentralized “web of trust” and its own OpenPGP packet format. For a corporate deployment where the organization already operates an internal CA, S/MIME integrates more naturally; PGP is often preferred for cross-organization or individual use where a central CA is not available.
+[Normal] Network Security Strategies
+[Normal] Network security strategies are designed to protect enterprise systems from threats such as viruses, worms, unauthorized access and network attacks. A firewall is used to filter incoming and outgoing traffic and separate the Internet, DMZ and internal network. IDS (Intrusion Detection System) continuously monitors network traffic and generates alerts when suspicious activity is detected, while IPS (Intrusion Prevention System) can automatically block malicious traffic. Malware defence is also used to detect and remove viruses, worms and other harmful software. By combining firewalls, IDS/IPS and malware protection, the organization can achieve a layered and effective network security architecture.
+[Heading 2] 3. Solution / Design / Methodology (20 Marks)
+[[IMAGE HERE]]
+[Normal] 3. Security Methodology
+[Normal] The selected Strategy C – Integrated Defence uses multiple security mechanisms to provide layered protection for the organization.
+[Normal] Use SHA-256 hashing to verify the integrity of files, messages and important data.
+[Normal] Use digital signatures to provide authentication, integrity and non-repudiation for transactions and internal documents.
+[Normal] Use Kerberos for secure internal authentication and Single Sign-On for employee systems.
+[Normal] Use X.509 certificates to authenticate the web and mail servers and establish trusted communication.
+[Normal] Use PGP/S/MIME to secure email communication between employees, customers and business partners.
+[Normal] Use firewalls at the Internet boundary and between the DMZ and internal network to control unauthorized traffic.
+[Normal] Deploy IDS/IPS at the network edge and DMZ boundary to detect and prevent suspicious network attacks.
+[Normal] Use malware defence on employee systems and servers to detect, quarantine and remove malicious software.
+[Normal] Monitor security logs continuously to identify unauthorized access, suspicious activities and possible attacks.
+[Normal] Regularly update firewall rules, IDS/IPS signatures, malware definitions, security policies and X.509 certificates.
+[Heading 1] 4. Use of Modern Tools (10 Marks)
+--- TABLE ---
+Purpose | Tool
+Hashing implementation | Python / OpenSSL
+SHA-256 verification | OpenSSL / sha256sum
+Digital Signature | Python / OpenSSL
+X.509 Certificate | OpenSSL
+Kerberos Authentication | MIT Kerberos
+PGP/S/MIME Email Security | GnuPG / S/MIME
+Network Simulation | Cisco Packet Tracer
+Packet Analysis | Wireshark
+Firewall Demonstration | pfSense / Linux iptables
+IDS/IPS | Snort / Suricata
+Malware Defence | Windows Defender / ClamAV
+Documentation | MS Word
+Code Management | Git / GitHub
+--- END TABLE ---
+[Normal] Example Python Demonstration – SHA-256
+[Normal] import hashlib
+[Normal] message = "HELLO"
+[Normal] hash_value = hashlib.sha256(message.encode()).hexdigest()
+[Normal] print("Message:", message)
+[Normal] print("SHA-256:", hash_value)
+[Normal] tampered_message = "HELLP"
+[Normal] tampered_hash = hashlib.sha256(tampered_message.encode()).hexdigest()
+[Normal] print("Tampered Message:", tampered_message)
+[Normal] print("SHA-256:", tampered_hash)
+[Normal] Expected Output
+[Normal] Message: HELLO
+[Normal] SHA-256: 3733cd97...
+[Normal] Tampered Message: HELLP
+[Normal] SHA-256: d37f1f82...
+[Normal] The hash values are different even though only one character was changed. This confirms that SHA-256 can be used to detect data modification.
+[Heading 1] 5. Results and Validation (15 Marks)
+[Normal] Validation Checks Performed
+[Normal] SHA-256 produces different hash values when the original message is modified.
+[Normal] Digital signature verification succeeds when the message is unchanged.
+[Normal] Digital signature verification fails when the signed data is modified.
+[Normal] Kerberos authenticates authorized internal users using authentication tickets.
+[Normal] X.509 certificates verify the identity of trusted servers.
+[Normal] PGP/S/MIME provides secure email communication.
+[Normal] The firewall blocks unauthorized network traffic according to configured rules.
+[Normal] IDS detects suspicious activities and generates alerts.
+[Normal] IPS blocks malicious traffic when configured in prevention mode.
+[Normal] Malware defence detects and quarantines malicious files.
+[Normal] The combined mechanisms provide multiple layers of security
+--- TABLE ---
+Technique | Input | Key / Configuration | Output / Result
+SHA-256 | HELLO | — | 3733cd97…e83e4d5
+SHA-256 (Tampered) | HELLP | — | d37f1f82…c4a9c1
+Digital Signature | Hash h = 5 | Private Key (7,33) | S = 14
+Signature Verification | S = 14 | Public Key (3,33) | Verified
+Kerberos | Employee login | Authentication ticket | Login successful
+X.509 | Web/Mail Server | Digital certificate | Server authenticated
+PGP/S/MIME | Email message | Public/Private keys | Secure email
+Firewall | Incoming traffic | Firewall rules | Unauthorized traffic blocked
+IDS | Suspicious traffic | Detection rules | Alert generated
+IPS | Malicious traffic | Prevention rules | Traffic blocked
+Malware Defence | Suspicious file | Security scan | Threat detected/quarantined
+--- END TABLE ---
+[Heading 1] 6. Analysis and Engineering Decision (15 Marks)
+[Normal] Hashing and Digital Signature Comparison
+--- TABLE ---
+Feature | Hashing | Digital Signature
+Main Function | Integrity verification | Authentication and non-repudiation
+Keys Required | No | Public + Private Key
+Speed | Fast | Relatively slower
+Output | Hash value | Digital signature
+Example | SHA-256 | RSA
+--- END TABLE ---
+[Normal] Firewall, IDS and IPS Comparison
+--- TABLE ---
+Feature | Firewall | IDS | IPS
+Main Function | Traffic filtering | Attack detection | Attack detection and prevention
+Generates Alerts | Sometimes | Yes | Yes
+Blocks Attacks | Yes, based on rules | Usually No | Yes
+Main Purpose | Access control | Monitoring | Detection + Prevention
+--- END TABLE ---
+[Normal] Engineering Decision
+[Normal] The organization should use a layered defence-in-depth approach instead of depending on a single security technology. Strategy C combines hashing, digital signatures, authentication, secure email, firewall protection, IDS/IPS and malware defence.
+[Normal] SHA-256 provides data integrity, while digital signatures provide authentication and non-repudiation. Kerberos provides secure internal authentication, and X.509 certificates authenticate web and mail servers. PGP/S/MIME protects email communication. Firewalls control network traffic, while IDS/IPS detects and prevents attacks. Malware defence protects employee systems and servers from malicious software.
+[Normal] Therefore, Strategy C – Integrated Defence provides stronger and more comprehensive protection than Strategy A and Strategy B.
+[[IMAGE HERE]]
+[Heading 1] 7. Broader Considerations (5 Marks)
+[Normal] Security: Sensitive organizational and customer information must be protected from unauthorized access, interception, modification and malware attacks.
+[Normal] Privacy: Only authorized employees should access confidential information. Access and security activities should be properly logged and monitored.
+[Normal] Ethics: IDS/IPS monitoring, email scanning and malware detection should follow documented security policies and respect user privacy.
+[Normal] Economic Factors: Open-source tools such as Snort, Suricata, OpenSSL and ClamAV can provide effective security while reducing implementation costs.
+[Normal] Sustainability: Security systems should be efficiently configured to avoid unnecessary processing, excessive scanning and redundant security operations.
+[Normal] Professional Responsibility: Security professionals should follow organizational security policies and applicable standards such as ISO/IEC 27001 and responsible security practices.
+[Heading 2] 8. Strategy Selection and Justification
+[Normal] Among the three proposed security strategies, Strategy C – Integrated Defence is selected as the most suitable strategy for the project.
+[Normal] Strategy C – Integrated Defence combines multiple security mechanisms to provide a layered approach to network security.
+[Normal] Components of Strategy C:
+[Normal] Hashing – Ensures data integrity.
+[Normal] Digital Signature – Provides authentication and non-repudiation.
+[Normal] Kerberos/X.509 – Provides secure authentication.
+[Normal] PGP/S/MIME – Protects email communication.
+[Normal] Firewall – Controls and filters network traffic.
+[Normal] IDS/IPS – Detects and prevents unauthorized activities.
+[Normal] Malware Defence – Protects systems from malicious software.
+[Normal] Comparison of Strategies
+--- TABLE ---
+Strategy | Security Level | Complexity | Suitability
+Strategy A – Basic Security | Low | Low | Suitable for basic systems
+Strategy B – Enhanced Security | High | Medium | Suitable for moderately secure systems
+Strategy C – Integrated Defence | Very High | High | Best for this project
+--- END TABLE ---
+[Normal] Reason for Selecting Strategy C
+[Normal] Strategy C is selected because it provides defence in depth by combining cryptographic security, strong authentication, secure communication, network monitoring, intrusion prevention, and malware protection. Therefore, it provides better protection against different types of security threats compared with Strategies A and B.
+[Normal] Proposed Security Architecture
+[Normal] Internet → Firewall → IDS/IPS → DMZ → Internal Firewall → Internal Network
+[Normal] The DMZ contains the Web Server and Mail Server, while the Internal Network contains Employee Systems, Authentication, and Database Server. The combination of these components provides multiple layers of protection for the organization's network.
+[Heading 2] 9.Implementation
+[Heading 2] STRATEGY A
+[[IMAGE HERE]]
+[Heading 2] STRATEGY B
+[[IMAGE HERE]]
+[Heading 2] STRATEGY C
+[[IMAGE HERE]]
+[Heading 2] 10. Conclusion (5 Marks)
+[Normal] The proposed network security architecture combines cryptographic techniques, authentication mechanisms, secure email protocols, firewalls and IDS/IPS to provide multiple layers of protection. Classical and public-key cryptography protect information during communication, while hashing (SHA-256) and digital signatures support integrity and authentication, as demonstrated by the worked examples above. Kerberos and X.509 provide secure identity verification, while PGP and S/MIME protect email communication. Firewalls and IDS/IPS provide network-level defense against unauthorized access and attacks.
+[Heading 2] 11. Student Reflection
+[Normal] Q1. What did you learn from this assignment beyond what was directly taught in the classroom?
+[Normal] Beyond the individual algorithms, this assignment showed how classical ciphers, public-key cryptography, hashing, authentication protocols and network-perimeter tools are meant to work together as a single layered system rather than as isolated topics —
+[Normal] Q2. Which security technique was most challenging to implement and why?
+[Normal] The Kerberos ticket-exchange sequence and thprivate-exponent calculation (finding d as the modular inverse of e) were the most conceptually demanding, since both require tracking several dependent values (tickets/session keys, or e, φ(n) and d) correctly across multiple steps before the mechanism can be validated end-to-end.
+[Normal] Q3. If you were given additional time and resources, what would you improve?
+[Normal] With more time, the design would be validated with real tools end-to-end — for example, configuring actual pfSense firewall rules and Snort signatures in a lab network, and generating full-size (2048-bit) RSA/X.509 certificates with OpenSSL — rather than the small illustrative numbers used here for hand-verifiable calculations.
+[Normal] Q4. How can the proposed security architecture be improved for a larger organization?
+[Normal] For a larger organization, the design would add: redundant/load-balanced firewalls and IDS/IPS sensors for availability, a centralized Security Information and Event Management (SIEM) system to correlate alerts across the whole network, a formally managed internal Certificate Authority with automated certificate renewal, multi-factor authentication layered on top of Kerberos, and network segmentation (VLANs) per department to further contain any breach.
+[Heading 2] 12. References
+[List Paragraph] William Stallings, Cryptography and Network Security: Principles and Practice.
+[List Paragraph] Behrouz A. Forouzan, Cryptography and Network Security.
+[List Paragraph] Python Documentation – docs.python.org
+[List Paragraph] Node.js Documentation – nodejs.org/docs
+[List Paragraph] Wireshark Documentation – wireshark.org/docs
+[List Paragraph] Snort Documentation – snort.org/documents
+[List Paragraph] OpenSSL Documentation – openssl.org/docs
+[Heading 1] F. Common Assessment Rubric
+--- TABLE ---
+Assessment Criterion | Marks
+Problem understanding & formulation | 
+Application of course/domain knowledge | 
+Solution methodology / design / implementation | 
+Use of appropriate modern tools / techniques | 
+Results, testing & validation | 
+Analysis, trade-offs & justification | 
+Broader considerations / professional responsibility | 
+Technical documentation & reflection | 
+TOTAL | 100
+--- END TABLE ---
+[Heading 1] G. CO–PO–Assessment Mapping
+--- TABLE ---
+Assessment Component | CO | Bloom's Level | Marks
+Problem formulation | CO3–CO5 | L3/L4 | 
+Application of knowledge | CO3–CO5 | L3/L4 | 
+Solution / Design / Implementation | CO3–CO5 | L4/L5/L6 | 
+Modern tool usage | CO3–CO5 | L3/L4 | 
+Validation | CO3–CO5 | L4/L5 | 
+Analysis & justification | CO3–CO5 | L4/L5 | 
+Broader considerations | CO3–CO5 | L4/L5 | 
+Documentation & reflection | CO3–CO5 | L3/L4 | 
+--- END TABLE ---
+[Heading 1] H. Faculty Evaluation & Continuous Improvement
+[Normal] Target CO Attainment: 70%
+[Normal] Actual CO Attainment: To be calculated based on student performance.
+[Normal] Faculty Analysis
+[Normal] Areas in which students performed well: _____________________________________________
+[Normal] Areas requiring improvement: _____________________________________________
+[Normal] Corrective / Improvement Action: _____________________________________________
+[Normal] Action to be implemented in the next offering: _____________________________________________
+[Normal] CONTRIBUTION
+--- TABLE ---
+S.No | REG NO | NAME | CONTRIBUTION
+1. | 192371034 | JAYAHARINI.J | Worked on hashing, and digital signature implementation. Handled the cryptographic calculations and validation of results.
+2. | 192521182 | VARSHINI. B | Worked on Kerberos and X.509 authentication frameworks and studied PGP/S-MIME for secure email communication.
+3. | 192421160 | NAVEEENA. R | Designed the firewall architecture and studied IDS/IPS functionalities, including detection and prevention of network attacks.
+4. | 192372113 | PALLAVI . V | Integrated the security strategies, compared Strategies A, B and C, selected Strategy C, prepared the architecture/flowchart, results, analysis and final documentation.
+--- END TABLE ---

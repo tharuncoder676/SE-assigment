@@ -1,0 +1,49 @@
+{
+  "total_words": 10889,
+  "composition": {
+    "prose": {
+      "words": 4119,
+      "percent": 37.8
+    },
+    "table": {
+      "words": 3736,
+      "percent": 34.3
+    },
+    "code": {
+      "words": 2630,
+      "percent": 24.2
+    },
+    "reference": {
+      "words": 404,
+      "percent": 3.7
+    }
+  },
+  "prose_words": 4119,
+  "shingle_size": 8,
+  "prose_shingles": 4112,
+  "per_source": {
+    "assignment-brief": {
+      "source_words": 706,
+      "matched_shingles": 7,
+      "overlap_percent": 0.17
+    },
+    "reference-format-sample": {
+      "source_words": 3394,
+      "matched_shingles": 0,
+      "overlap_percent": 0.0
+    }
+  },
+  "combined_source_overlap_percent": 0.17,
+  "matched_shingles": 7,
+  "longest_verbatim_run_words": 14,
+  "internal_self_similarity_percent": 0.22,
+  "sample_matches": [
+    "appointments doctor availability notifications service requests and healthcare",
+    "availability notifications service requests and healthcare related information",
+    "doctor availability notifications service requests and healthcare related",
+    "manage patient appointments doctor availability notifications service requests",
+    "patient appointments doctor availability notifications service requests and",
+    "platform to manage patient appointments doctor availability notifications",
+    "to manage patient appointments doctor availability notifications service"
+  ]
+}
