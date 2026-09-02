@@ -4,7 +4,6 @@ These classes are the single source of truth for the OpenAPI document that
 FastAPI publishes at /docs, which is what makes the design API-first.
 """
 import datetime as dt
-from typing import Optional
 
 from pydantic import BaseModel, Field
 
@@ -83,4 +82,4 @@ class NotificationOut(BaseModel):
 
 class MessageOut(BaseModel):
     detail: str
-    reference: Optional[str] = None
+    reference: str | None = None

@@ -21,7 +21,9 @@ def current_user(
     try:
         claims = decode_access_token(authorization.split(" ", 1)[1].strip())
     except ValueError:
-        raise UNAUTHORIZED
+        # `from None` deliberately suppresses the decoding error: the client
+        # must not learn whether the token was malformed, forged or expired.
+        raise UNAUTHORIZED from None
 
     user = db.query(User).filter(User.email == claims["sub"]).first()
     if user is None or not user.is_active:

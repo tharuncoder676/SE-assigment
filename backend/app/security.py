@@ -15,7 +15,7 @@ import hmac
 import json
 import os
 import time
-from typing import Any, Dict, Optional
+from typing import Any
 
 from .config import settings
 
@@ -25,14 +25,12 @@ ALGORITHM = "HS256"
 # --------------------------------------------------------------------------
 # password hashing
 # --------------------------------------------------------------------------
-def hash_password(password: str, iterations: Optional[int] = None) -> str:
+def hash_password(password: str, iterations: int | None = None) -> str:
     """Return ``pbkdf2_sha256$<iterations>$<salt_b64>$<hash_b64>``."""
     iterations = iterations or settings.PBKDF2_ITERATIONS
     salt = os.urandom(16)
     digest = hashlib.pbkdf2_hmac("sha256", password.encode(), salt, iterations)
-    return "pbkdf2_sha256${}${}${}".format(
-        iterations, _b64(salt), _b64(digest)
-    )
+    return f"pbkdf2_sha256${iterations}${_b64(salt)}${_b64(digest)}"
 
 
 def verify_password(password: str, stored: str) -> bool:
@@ -51,7 +49,7 @@ def verify_password(password: str, stored: str) -> bool:
 # --------------------------------------------------------------------------
 # JSON Web Tokens
 # --------------------------------------------------------------------------
-def create_access_token(subject: str, role: str, ttl: Optional[int] = None) -> str:
+def create_access_token(subject: str, role: str, ttl: int | None = None) -> str:
     now = int(time.time())
     header = {"alg": ALGORITHM, "typ": "JWT"}
     claims = {
@@ -61,19 +59,19 @@ def create_access_token(subject: str, role: str, ttl: Optional[int] = None) -> s
         "exp": now + (ttl or settings.JWT_TTL_SECONDS),
         "iss": "smartcare",
     }
-    signing_input = "{}.{}".format(_b64(_json(header)), _b64(_json(claims)))
+    signing_input = f"{_b64(_json(header))}.{_b64(_json(claims))}"
     signature = _sign(signing_input)
-    return "{}.{}".format(signing_input, _b64(signature))
+    return f"{signing_input}.{_b64(signature)}"
 
 
-def decode_access_token(token: str) -> Dict[str, Any]:
+def decode_access_token(token: str) -> dict[str, Any]:
     """Validate signature and expiry. Raises ``ValueError`` when invalid."""
     try:
         header_b64, claims_b64, signature_b64 = token.split(".")
     except ValueError:
-        raise ValueError("malformed token")
+        raise ValueError("malformed token") from None
 
-    expected = _sign("{}.{}".format(header_b64, claims_b64))
+    expected = _sign(f"{header_b64}.{claims_b64}")
     if not hmac.compare_digest(expected, _unb64(signature_b64)):
         raise ValueError("signature mismatch")
 
@@ -92,7 +90,7 @@ def _sign(signing_input: str) -> bytes:
     ).digest()
 
 
-def _json(obj: Dict[str, Any]) -> bytes:
+def _json(obj: dict[str, Any]) -> bytes:
     return json.dumps(obj, separators=(",", ":"), sort_keys=True).encode()
 
 

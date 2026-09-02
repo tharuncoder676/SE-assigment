@@ -9,22 +9,23 @@ change of implementation, not of the calling code.
 """
 import logging
 from collections import defaultdict
+from collections.abc import Callable
 from concurrent.futures import ThreadPoolExecutor
-from typing import Any, Callable, Dict, List
+from typing import Any
 
 log = logging.getLogger("smartcare.events")
 
 
 class EventBus:
     def __init__(self, workers: int = 4) -> None:
-        self._subscribers: Dict[str, List[Callable[[Dict[str, Any]], None]]] = defaultdict(list)
+        self._subscribers: dict[str, list[Callable[[dict[str, Any]], None]]] = defaultdict(list)
         self._pool = ThreadPoolExecutor(max_workers=workers, thread_name_prefix="event")
         self.published = 0
 
-    def subscribe(self, topic: str, handler: Callable[[Dict[str, Any]], None]) -> None:
+    def subscribe(self, topic: str, handler: Callable[[dict[str, Any]], None]) -> None:
         self._subscribers[topic].append(handler)
 
-    def publish(self, topic: str, payload: Dict[str, Any], sync: bool = False) -> None:
+    def publish(self, topic: str, payload: dict[str, Any], sync: bool = False) -> None:
         self.published += 1
         log.info("event published", extra={"event": topic})
         for handler in self._subscribers[topic]:

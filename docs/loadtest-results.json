@@ -1,0 +1,147 @@
+{
+  "scenarios": [
+    {
+      "scenario": "GET /api/v1/doctors",
+      "concurrency": 1,
+      "requests": 2546,
+      "throughput_rps": 318.2,
+      "mean_ms": 3.03,
+      "p50_ms": 2.98,
+      "p95_ms": 3.88,
+      "p99_ms": 4.45,
+      "max_ms": 10.21,
+      "success_rate": 100.0,
+      "status_codes": {
+        "200": 2546
+      }
+    },
+    {
+      "scenario": "GET /api/v1/doctors",
+      "concurrency": 5,
+      "requests": 3695,
+      "throughput_rps": 461.7,
+      "mean_ms": 10.15,
+      "p50_ms": 9.73,
+      "p95_ms": 13.8,
+      "p99_ms": 19.91,
+      "max_ms": 43.26,
+      "success_rate": 100.0,
+      "status_codes": {
+        "200": 3695
+      }
+    },
+    {
+      "scenario": "GET /api/v1/doctors",
+      "concurrency": 10,
+      "requests": 3447,
+      "throughput_rps": 430.2,
+      "mean_ms": 20.84,
+      "p50_ms": 20.26,
+      "p95_ms": 27.65,
+      "p99_ms": 38.15,
+      "max_ms": 53.52,
+      "success_rate": 100.0,
+      "status_codes": {
+        "200": 3447
+      }
+    },
+    {
+      "scenario": "GET /api/v1/doctors",
+      "concurrency": 25,
+      "requests": 2959,
+      "throughput_rps": 368.7,
+      "mean_ms": 51.55,
+      "p50_ms": 50.15,
+      "p95_ms": 68.33,
+      "p99_ms": 86.94,
+      "max_ms": 111.88,
+      "success_rate": 100.0,
+      "status_codes": {
+        "200": 2959
+      }
+    },
+    {
+      "scenario": "GET /api/v1/doctors",
+      "concurrency": 50,
+      "requests": 2114,
+      "throughput_rps": 262.3,
+      "mean_ms": 106.2,
+      "p50_ms": 101.62,
+      "p95_ms": 200.39,
+      "p99_ms": 263.21,
+      "max_ms": 485.32,
+      "success_rate": 100.0,
+      "status_codes": {
+        "200": 2114
+      }
+    },
+    {
+      "scenario": "GET /health (liveness probe)",
+      "concurrency": 25,
+      "requests": 7426,
+      "throughput_rps": 926.3,
+      "mean_ms": 20.59,
+      "p50_ms": 19.49,
+      "p95_ms": 25.38,
+      "p99_ms": 52.79,
+      "max_ms": 117.35,
+      "success_rate": 100.0,
+      "status_codes": {
+        "200": 7426
+      }
+    },
+    {
+      "scenario": "GET /api/v1/doctors/1/slots",
+      "concurrency": 25,
+      "requests": 1325,
+      "throughput_rps": 164.1,
+      "mean_ms": 117.45,
+      "p50_ms": 117.94,
+      "p95_ms": 167.02,
+      "p99_ms": 196.71,
+      "max_ms": 250.66,
+      "success_rate": 100.0,
+      "status_codes": {
+        "200": 1325
+      }
+    },
+    {
+      "scenario": "GET /api/v1/appointments (JWT verified)",
+      "concurrency": 25,
+      "requests": 2697,
+      "throughput_rps": 335.7,
+      "mean_ms": 57.54,
+      "p50_ms": 56.61,
+      "p95_ms": 72.65,
+      "p99_ms": 87.56,
+      "max_ms": 106.38,
+      "success_rate": 100.0,
+      "status_codes": {
+        "200": 2697
+      }
+    },
+    {
+      "scenario": "GET /metrics (Prometheus scrape)",
+      "concurrency": 10,
+      "requests": 8882,
+      "throughput_rps": 1109.6,
+      "mean_ms": 8.14,
+      "p50_ms": 7.81,
+      "p95_ms": 9.85,
+      "p99_ms": 12.2,
+      "max_ms": 77.24,
+      "success_rate": 100.0,
+      "status_codes": {
+        "200": 8882
+      }
+    }
+  ],
+  "crypto": {
+    "pbkdf2_hash_600k_ms": 251.957,
+    "pbkdf2_verify_600k_ms": 245.549,
+    "jwt_sign_ms": 0.009,
+    "jwt_verify_ms": 0.007
+  },
+  "duration_s": 8,
+  "target": "http://127.0.0.1:8010"
+}

@@ -6,16 +6,15 @@ any adapter.
 """
 import threading
 from collections import defaultdict
-from typing import Dict, List, Tuple
 
-BUCKETS: Tuple[float, ...] = (0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.5, 5.0)
+BUCKETS: tuple[float, ...] = (0.005, 0.01, 0.025, 0.05, 0.1, 0.25, 0.5, 1.0, 2.5, 5.0)
 
 
 class MetricRegistry:
     def __init__(self) -> None:
         self._lock = threading.Lock()
-        self.requests: Dict[Tuple[str, str, int], int] = defaultdict(int)
-        self.latency_buckets: Dict[float, int] = defaultdict(int)
+        self.requests: dict[tuple[str, str, int], int] = defaultdict(int)
+        self.latency_buckets: dict[float, int] = defaultdict(int)
         self.latency_sum = 0.0
         self.latency_count = 0
         self.errors = 0
@@ -32,7 +31,7 @@ class MetricRegistry:
                     self.latency_buckets[bucket] += 1
 
     def render(self) -> str:
-        lines: List[str] = []
+        lines: list[str] = []
         with self._lock:
             lines.append("# HELP smartcare_http_requests_total Total HTTP requests.")
             lines.append("# TYPE smartcare_http_requests_total counter")

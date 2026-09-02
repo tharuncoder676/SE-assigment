@@ -7,7 +7,6 @@ multi-replica deployment (the interface is identical).
 import threading
 import time
 from collections import defaultdict, deque
-from typing import Deque, Dict
 
 from .config import settings
 
@@ -16,7 +15,7 @@ class SlidingWindowLimiter:
     def __init__(self, max_events: int, window_seconds: int) -> None:
         self.max_events = max_events
         self.window = window_seconds
-        self._hits: Dict[str, Deque[float]] = defaultdict(deque)
+        self._hits: dict[str, deque[float]] = defaultdict(deque)
         self._lock = threading.Lock()
 
     def allow(self, key: str) -> bool:

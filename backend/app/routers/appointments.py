@@ -57,7 +57,9 @@ def book(
         db.commit()
     except IntegrityError:
         db.rollback()
-        raise HTTPException(status_code=409, detail="Slot has already been booked")
+        raise HTTPException(
+            status_code=409, detail="Slot has already been booked"
+        ) from None
 
     db.refresh(appointment)
     doctor = db.get(Doctor, slot.doctor_id)

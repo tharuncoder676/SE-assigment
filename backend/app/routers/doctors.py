@@ -1,6 +1,5 @@
 """Doctor directory and availability service."""
 import datetime as dt
-from typing import List, Optional
 
 from fastapi import APIRouter, Depends, HTTPException, Query
 from sqlalchemy.orm import Session
@@ -12,10 +11,10 @@ from ..schemas import DoctorOut, SlotOut
 router = APIRouter(prefix="/api/v1/doctors", tags=["Doctors"])
 
 
-@router.get("", response_model=List[DoctorOut])
+@router.get("", response_model=list[DoctorOut])
 def list_doctors(
-    speciality: Optional[str] = Query(default=None, description="Filter by speciality"),
-    q: Optional[str] = Query(default=None, description="Free-text search on name"),
+    speciality: str | None = Query(default=None, description="Filter by speciality"),
+    q: str | None = Query(default=None, description="Free-text search on name"),
     db: Session = Depends(get_db),
 ):
     """Directory of consulting doctors, optionally filtered."""
@@ -27,13 +26,13 @@ def list_doctors(
     return query.order_by(Doctor.name).all()
 
 
-@router.get("/specialities", response_model=List[str])
+@router.get("/specialities", response_model=list[str])
 def specialities(db: Session = Depends(get_db)):
     rows = db.query(Doctor.speciality).distinct().order_by(Doctor.speciality).all()
     return [r[0] for r in rows]
 
 
-@router.get("/{doctor_id}/slots", response_model=List[SlotOut])
+@router.get("/{doctor_id}/slots", response_model=list[SlotOut])
 def available_slots(
     doctor_id: int,
     only_free: bool = Query(default=True),
